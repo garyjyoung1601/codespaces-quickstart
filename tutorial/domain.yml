@@ -1,28 +1,34 @@
 version: "3.1"
 
+actions:
+  - action_check_sufficient_funds
+
 slots:
   recipient:
     type: text
-  name:
-    type: text
-  mappings:
+    mappings:
       - type: from_llm
   amount:
     type: float
+  has_sufficient_funds:
+    type: bool
+    mappings:
+      - type: controlled
   final_confirmation:
     type: bool
     mappings:
       - type: from_llm
 
 responses:
-  utter_greet:
-    - text: "Hey {name}. How are you?"
 
   utter_ask_recipient:
     - text: "Who would you like to send money to?"
 
   utter_ask_amount:
     - text: "How much money would you like to send?"
+
+  utter_insufficient_funds:
+    - text: "You do not have enough funds to make this transaction."
 
   utter_transfer_complete:
     - text: "All done. {amount} has been sent to {recipient}."
