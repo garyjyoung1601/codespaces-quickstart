@@ -3,7 +3,9 @@ version: "3.1"
 slots:
   recipient:
     type: text
-    mappings:
+  name:
+    type: text
+  mappings:
       - type: from_llm
   amount:
     type: float
@@ -13,6 +15,9 @@ slots:
       - type: from_llm
 
 responses:
+  utter_greet:
+    - text: "Hey {name}. How are you?"
+
   utter_ask_recipient:
     - text: "Who would you like to send money to?"
 
